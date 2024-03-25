@@ -14,13 +14,12 @@ def random_predict(number: int = 1) -> int:
     Returns:
         int: Число попыток
     """
-    count = 0
+    count = 0 
     predict_number = 50  # предположение, что загаданное число равно половине диапазона угадываемых чисел
-    divider = 50   # переменная для уменьшения диапазона массива чисел с одержащего загаданное число
+    divider = 50   # переменная для уменьшения диапазона массива чисел содержащего загаданного число
     
     while True:
-        count += 1
-        # predict_number = np.random.randint(1, 101)  # предполагаемое число
+        count += 1        
         if number == predict_number:  
             break  # выход из цикла если угадали
         
@@ -30,15 +29,15 @@ def random_predict(number: int = 1) -> int:
                 divider /= 2
             else:
                 predict_number += (divider + 1)/2
-                divider = (divider+1)/2
+                divider = (divider + 1)/2
               
         elif number < predict_number:
             if divider % 2 == 0:
-                predict_number -= divider/2               
+                predict_number -= divider / 2               
                 divider /=2                
             else:
                 predict_number -= (divider + 1)/2       
-                divider = (divider+1)/2
+                divider = (divider + 1)/2
               
        
     return count
