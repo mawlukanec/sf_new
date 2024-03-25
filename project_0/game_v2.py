@@ -28,15 +28,17 @@ def random_predict(number: int = 1) -> int:
             if divider % 2 == 0:
                 predict_number += divider / 2                 
                 divider /= 2
-            predict_number += (divider + 1)/2
-            divider = (divider+1)/2
+            else:
+                predict_number += (divider + 1)/2
+                divider = (divider+1)/2
               
         elif number < predict_number:
             if divider % 2 == 0:
                 predict_number -= divider/2               
                 divider /=2                
-            predict_number -= (divider + 1)/2       
-            divider = (divider+1)/2
+            else:
+                predict_number -= (divider + 1)/2       
+                divider = (divider+1)/2
               
        
     return count
