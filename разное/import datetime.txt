@@ -1,0 +1,6 @@
+import datetime
+birthday = input('enter your birthdea')
+print(f'вы ввели: {birthday}')
+day, month, year = birthday.split('.')
+age_days = datetime.date.today - datetime.date(int(day),int(month),int(year))
+print('число дней с рождения: {age_days}')
