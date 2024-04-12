@@ -1,3 +1,7 @@
 import pandas as pd
-countries_data = pd.read_csv('d:/python/GUESS/РАБОЧАЯ/PANDAS/data/musik.csv', sep=';')
-print(countries_data)
+
+x_data = pd.read_csv('https://raw.githubusercontent.com/justmarkham/pandas-videos/master/data/ufo.csv', sep=',')
+
+nlo_data = x_data.copy()
+nlo_days = pd.to_datetime(nlo_data['Time'], dayfirst= False).dt.date
+nlo
