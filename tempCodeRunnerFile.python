@@ -1,7 +1,40 @@
 import pandas as pd
+x_data = pd.read_csv('d:/python/GUESS/РАБОЧАЯ/PANDAS/data/массаж.csv', sep=';', encoding='windows 1251')
+x_df = x_data.copy()
 
-x_data = pd.read_csv('https://raw.githubusercontent.com/justmarkham/pandas-videos/master/data/ufo.csv', sep=',')
+# удаление последней строки с обобщенной информацией и NaN
+dell = x_df.shape[0]
+x_df = x_df[0:dell-1] 
+#print(x_df.tail(5))
 
-nlo_data = x_data.copy()
-nlo_days = pd.to_datetime(nlo_data['Time'], dayfirst= False).dt.date
-nlo
+# приведение времени
+x_df['Дата'] = pd.to_datetime(x_df['Дата'])# , dayfirst= True)
+
+
+def split_gr(gr):
+   
+    temp = gr.split(' ')[-1] # нужно обрезать список!!!
+    temp = temp.split('_')[-1]
+    
+    return int(temp)
+
+x_df['группа']= x_df['Запись'].apply(split_gr) 
+x_df['группа'] = x_df['группа'].astype('int8')
+#print(x_df.info())
+# print(x_df.tail(3))
+# #display(logopedi_df.dtypes)
+#print(x_df.tail(5))
+
+# срез данных
+# x_tail = x_df.iloc[:, 7:].groupby(by= 'Кампания', ascending= True).copy()
+mask_kml = x_df['Кампания'] == 'Массаж лица'
+mask_cws = x_df['Кампания'] == 'ШВЗ'
+
+x_df.sort_values(by= 'Кампания', ascending=True).head()
+f = x_df[x_df[mask_kml]]['Кампания']
+# logoped['k'] = (logoped['Потрачено, руб.']/logoped['Выполненные заявки'])/logoped['Переходы по ссылкам']
+
+
+# display(logoped.sort_values(by= 'k', ascending= True).head(20))
+
+# # display(logoped.sort_values(by= 'Комментарии', ascending= False).head(20))
